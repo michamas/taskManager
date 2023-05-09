@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { statusFilters } from 'redux/constants.js';
-import { Task } from '../Taks/Task.js';
-import { getStatusFilter, getTasks } from 'redux/selector.js';
+import { Task } from '../Task/Task.js';
+import { getStatusFilter, getTasks } from 'redux/selectors.js';
 import css from './TaskList.module.css';
 
 const getVisibleTasks = (tasks, statusFilter) => {

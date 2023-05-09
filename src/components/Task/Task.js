@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-// import { MdClose } from 'react-icons/md';
+import { MdClose } from 'react-icons/md';
 import { deleteTask, toggleCompleted } from '../../redux/actions';
 import css from './Task.module.css';
 
@@ -20,7 +20,7 @@ export const Task = ({ task }) => {
       />
       <p className={css.text}>{task.text}</p>
       <button className={css.btn} onClick={handleDelete}>
-        Close{' '}
+        <MdClose size={24} />
       </button>
     </div>
   );

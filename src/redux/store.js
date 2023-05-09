@@ -1,4 +1,5 @@
 //GATHERING DATA AND INFORMATION
+// GLABOALIZED STATE
 
 import { devToolsEnhancer } from '@redux-devtools/extension';
 import { createStore } from 'redux';
