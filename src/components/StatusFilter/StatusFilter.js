@@ -15,21 +15,18 @@ export const StatusFilter = () => {
     <div className={css.wrapper}>
       <Button
         onClick={() => handleFilterChange(statusFilters.all)}
-        type="button"
         selected={filter === statusFilters.all}
       >
         All
       </Button>
       <Button
         onClick={() => handleFilterChange(statusFilters.active)}
-        type="button"
         selected={filter === statusFilters.active}
       >
         Active
       </Button>
       <Button
         onClick={() => handleFilterChange(statusFilters.completed)}
-        type="button"
         selected={filter === statusFilters.completed}
       >
         Completed

@@ -5,8 +5,6 @@ import { TaskForm } from './TaskForm/TaskFrom.js';
 import { TaskList } from './TaskList/TaskList.js';
 
 const App = () => {
-  // const value = useSelector(state => state.tasks[0].text);
-  // console.log('🚀 ~ value:', value);
   return (
     <Layout>
       <AppBar />
