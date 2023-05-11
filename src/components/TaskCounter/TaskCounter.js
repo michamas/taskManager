@@ -3,8 +3,10 @@ import { getTasks } from '../../redux/selectors';
 import css from './TaskCounter.module.css';
 
 export const TaskCounter = () => {
+  // Get an array of tasks from the Redux state
   const tasks = useSelector(getTasks);
 
+  // Based on the Redux state, get derived data
   const count = tasks.reduce(
     (acc, task) => {
       if (task.completed) {

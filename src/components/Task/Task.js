@@ -3,11 +3,21 @@ import { MdClose } from 'react-icons/md';
 import { deleteTask, toggleCompleted } from '../../redux/actions';
 import css from './Task.module.css';
 
+/*
+useDispatch - notify the store that some event has occured
+            in the interface - sends an action.
+*/
+
 export const Task = ({ task }) => {
+  // Get a link to the action dispatch function
   const dispatch = useDispatch();
 
+  // Call the action generator and pass the task ID
+  // Send the result - task delete action
   const handleDelete = () => dispatch(deleteTask(task.id));
 
+  // Call the action generator and pass the task ID
+  // Send the result - action to switch task status
   const handleToggle = () => dispatch(toggleCompleted(task.id));
 
   return (

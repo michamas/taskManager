@@ -1,14 +1,19 @@
 import { useDispatch } from 'react-redux';
 import { Button } from 'components/Button/Button';
+// Import the action generator
 import { addTask } from '../../redux/actions';
 import css from './TaskForm.module.css';
 
 export const TaskForm = () => {
+  // Get a link to the action dispatch function
   const dispatch = useDispatch();
 
   const handleSubmit = event => {
     event.preventDefault();
     const form = event.target;
+    // Call the action generator and pass the task text
+    // for the payload field
+    //  Send the result - task creation action
     dispatch(addTask(form.elements.text.value));
     form.reset();
   };

@@ -1,3 +1,15 @@
+/*
+ACTIONS - objects that pass data from components to the store
+and signal wat event has occured in the interface
+        - should carry minimum necessary set of information
+        enough to changes the state
+        - sent by useDispatcj
+
+type - describes the type of event in the interface (domain/eventName)
+      domain - category, ===property nam of the redux state
+      eventName - event describing the action
+payload - passed data
+*/
 import { nanoid } from 'nanoid';
 
 export const addTask = text => {
