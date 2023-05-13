@@ -10,8 +10,31 @@ type - describes the type of event in the interface (domain/eventName)
       eventName - event describing the action
 payload - passed data
 */
+import { createAction } from '@reduxjs/toolkit';
 import { nanoid } from 'nanoid';
 
+//=============== REDUX TOOLKIT ========================
+export const addTask = createAction('tasks/AddTask', text => {
+  return {
+    payload: {
+      text,
+      id: nanoid(),
+      completed: false,
+    },
+  };
+});
+// W generatorze akcji jest właściwość type
+console.log(addTask.type); // "tasks/AddTask"
+
+// Metoda toString() funkcji addTask została przedefiniowana
+console.log(addTask.toString()); // "tasks/AddTask"
+
+export const deleteTask = createAction('tasks/deleteTask');
+export const toggleCompleted = createAction('tasks/toggleCompleted');
+export const setStatusFilter = createAction('filters/setStatusFilter');
+
+//=============== JUST REDUX ========================
+/*
 export const addTask = text => {
   return {
     type: 'tasks/addTask',
@@ -43,3 +66,4 @@ export const setStatusFilter = value => {
     payload: value,
   };
 };
+*/

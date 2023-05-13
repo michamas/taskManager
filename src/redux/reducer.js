@@ -12,7 +12,13 @@ ACTIONS - describe only what happend, not how the app state changes
 
 import { combineReducers } from 'redux';
 import { statusFilters } from './constants';
-
+import {
+  addTask,
+  deleteTask,
+  setStatusFilter,
+  toggleCompleted,
+} from './actions.js';
+import { createReducer } from '@reduxjs/toolkit';
 /*
 Initial Redux state value for the root reducer,
 if you don't pass the preloadedState parameter.
@@ -24,7 +30,74 @@ const tasksInitialState = [
   { id: 3, text: 'Discover Redux', completed: false },
   { id: 4, text: 'Build amazing apps', completed: false },
 ];
+//=============== REDUX TOOLKIT ========================
+export const tasksReducer = createReducer(tasksInitialState, {
+  [addTask]: (state, action) => {
+    // return [...state, action.payload];
+    // ✅ Immer will replace this with an update operation
+    state.push(action.payload);
+  },
+  [deleteTask]: (state, action) => {
+    // return state.filter(task => task.id !== action.payload);
+    // ✅ Immer will replace this with an update operation
+    const index = state.findIndex(task => task.id === action.payload);
+    state.splice(index, 1);
+  },
+  [toggleCompleted]: (state, action) => {
+    // return state.map(task => {
+    //   if (task.id !== action.payload) {
+    //     return task;
+    //   }
+    //   return {
+    //     ...task,
+    //     completed: !task.completed,
+    //   };
+    // });
+    // ✅ Immer will replace this with an update operation
+    for (const task of state) {
+      if (task.id === action.payload) {
+        task.completed = !task.completed;
+      }
+    }
+  },
+});
 
+const filtersInitialState = {
+  status: statusFilters.all,
+};
+
+export const filtersReducer = createReducer(filtersInitialState, {
+  [setStatusFilter]: (state, action) => {
+    // return {
+    //   ...state,
+    //   status: action.payload,
+    // };
+    // ✅ Immer will replace this with an update operation
+    state.status = action.payload;
+  },
+});
+
+// export const tasksReducer = (state = tasksInitialState, action) => {
+//   switch (action.type) {
+//     case addTask.type:
+//       return [...state, action.payload];
+//     case deleteTask.type:
+//       return state.filter(task => task.id !== action.payload);
+//     case 'tasks/toggleCompleted':
+//       return state.map(task => {
+//         if (task.id !== action.payload) {
+//           return task;
+//         }
+//         return { ...task, completed: !task.completed };
+//       });
+//     default:
+//       return state;
+//   }
+// };
+
+//=============== JUST REDUX ========================
+
+/*
 // Always one root reduces in the app, which must be passed
 // to create the store
 // Use initialState as default state value
@@ -82,3 +155,4 @@ export const rootReducer = combineReducers({
   tasks: tasksReducer,
   filters: filtersReducer,
 });
+*/
