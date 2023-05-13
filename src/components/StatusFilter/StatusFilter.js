@@ -4,7 +4,7 @@ import { statusFilters } from 'redux/constants.js';
 // import the filter value object
 import { getStatusFilter } from 'redux/selectors.js';
 // Import the action generator
-import { setStatusFilter } from 'redux/actions.js';
+import { setStatusFilter } from 'redux/filtersSlice.js';
 import css from './StatusFilter.module.css';
 
 /* 

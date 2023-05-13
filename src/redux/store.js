@@ -3,10 +3,12 @@ STORE - contains complete app state
         - state access methods
         - action dispatch methods
 */
-import { devToolsEnhancer } from '@redux-devtools/extension';
-import { createStore } from 'redux';
-import { filtersReducer, rootReducer, tasksReducer } from './reducer.js';
+// import { devToolsEnhancer } from '@redux-devtools/extension';
+// import { createStore } from 'redux';
+// import { filtersReducer, rootReducer, tasksReducer } from './reducer.js';
 import { configureStore } from '@reduxjs/toolkit';
+import { tasksReducer } from './tasksSlice';
+import { filtersReducer } from './filtersSlice';
 
 //=============== REDUX TOOLKIT ========================
 export const store = configureStore({
