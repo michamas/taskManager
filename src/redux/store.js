@@ -7,8 +7,8 @@ STORE - contains complete app state
 // import { createStore } from 'redux';
 // import { filtersReducer, rootReducer, tasksReducer } from './reducer.js';
 import { configureStore } from '@reduxjs/toolkit';
-import { tasksReducer } from './tasksSlice';
-import { filtersReducer } from './filtersSlice';
+import { tasksReducer } from './tasksSlice.js';
+import { filtersReducer } from './filtersSlice.js';
 
 //=============== REDUX TOOLKIT ========================
 export const store = configureStore({
