@@ -1,4 +1,4 @@
-import { getError, getIsLoading } from 'redux/selectors.js';
+import { selectError, selectIsLoading } from 'redux/selectors.js';
 import { AppBar } from './AppBar/AppBar.js';
 import { Layout } from './Layout/Layout.js';
 import { TaskForm } from './TaskForm/TaskForm.js';
@@ -9,8 +9,8 @@ import { fetchTasks } from 'redux/operations';
 
 const App = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError); // Get state parts
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError); // Get state parts
   useEffect(() => {
     dispatch(fetchTasks());
   }, [dispatch]);

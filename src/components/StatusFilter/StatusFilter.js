@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '../Button/Button.js';
 import { statusFilters } from 'redux/constants.js';
 // import the filter value object
-import { getStatusFilter } from 'redux/selectors.js';
+import { selectStatusFilter } from 'redux/selectors.js';
 // Import the action generator
 import { setStatusFilter } from 'redux/filtersSlice.js';
 import css from './StatusFilter.module.css';
@@ -17,7 +17,7 @@ export const StatusFilter = () => {
   const dispatch = useDispatch();
 
   // get filter value from Redux state
-  const filter = useSelector(getStatusFilter);
+  const filter = useSelector(selectStatusFilter);
 
   //  Call the action generator and pass the filter value
   // Sending the result - filter change action
