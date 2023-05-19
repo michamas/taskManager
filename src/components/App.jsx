@@ -1,26 +1,37 @@
-import { selectError, selectIsLoading } from 'redux/selectors.js';
-import { AppBar } from './AppBar/AppBar.js';
-import { Layout } from './Layout/Layout.js';
-import { TaskForm } from './TaskForm/TaskForm.js';
-import { TaskList } from './TaskList/TaskList.js';
+import { Route, Routes } from 'react-router-dom';
+import { HomePage } from 'pages/HomePage.js';
+import { LoginPage } from 'pages/LoginPage.js';
+import { RegisterPage } from 'pages/RegisterPage.js';
+import { TasksPage } from 'pages/TasksPage.js';
+import { Layout } from './Layout.js';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchTasks } from 'redux/operations';
+import { useDispatch } from 'react-redux';
+import { refreshUser } from 'redux/auth/operations.js';
 
 const App = () => {
-  const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError); // Get state parts
+  const disptach = useDispatch();
+
   useEffect(() => {
-    dispatch(fetchTasks());
-  }, [dispatch]);
+    disptach(refreshUser());
+  }, [disptach]);
+
   return (
-    <Layout>
-      <AppBar />
-      <TaskForm />
-      {isLoading && !error && <b>Request in progress...</b>}
-      <TaskList />
-    </Layout>
+    <div>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/tasks" element={<TasksPage />} />
+        </Route>
+      </Routes>
+    </div>
+    //   <Route path="/" element={<Layout />}>
+    //     <Route index element={<HomePage />} />
+    //     <Route path="login" element={<LoginPage />} />
+    //     <Route path="register" element={<RegisterPage />} />
+    //     <Route path="tasks" element={<TasksPage />} />
+    //   </Route>
   );
 };
 
