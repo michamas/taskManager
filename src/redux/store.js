@@ -4,7 +4,7 @@ STORE - contains complete app state
         - action dispatch methods
 */
 
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { tasksReducer } from './tasksSlice.js';
 import { filtersReducer } from './filtersSlice.js';
 import storage from 'redux-persist/lib/storage';
@@ -27,11 +27,13 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
-// const middleware = {
-//   serializableCheck: {
-//     ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-//   },
-// };
+const middleware = [
+  ...getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
+];
 
 //=============== REDUX TOOLKIT + REDUX PERSIST ========================
 export const store = configureStore({
@@ -40,10 +42,13 @@ export const store = configureStore({
     tasks: tasksReducer,
     filters: filtersReducer,
   },
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
-      serializableCheck: false,
-    }),
+  middleware,
+  devTools: process.env.NODE_ENV === 'development',
+
+  // middleware: getDefaultMiddleware =>
+  //   getDefaultMiddleware({
+  //     serializableCheck: false,
+  //   }),
 });
 
 export const persistor = persistStore(store);

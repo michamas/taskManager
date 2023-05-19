@@ -3,10 +3,12 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://goit-task-manager.herokuapp.com/';
 
+// Utility to add JWT
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
+// Utility to remove JWT
 const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = '';
 };
@@ -20,10 +22,13 @@ export const register = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await axios.post('/users/signup', credentials);
+      // console.log('🚀 ~ credentials:', credentials);
       // After successful registration, add the token to the HTTP header
-      //   setAuthHeader(response.data.token);
+
+      setAuthHeader(response.data.token);
       return response.data;
     } catch (e) {
+      console.log('errpr');
       return thunkAPI.rejectWithValue(e.message);
     }
   }

@@ -18,6 +18,8 @@ axios.defaults.baseURL = 'https://62584f320c918296a49543e7.mockapi.io';
 
 // createAsyncThunk - simplifies process of declaring async action
 // createAsyncThunk(actionType, httpRequestFunction)
+
+// GET @ /tasks
 export const fetchTasks = createAsyncThunk(
   'tasks/fetchAll',
   // We use the underscore character as the name of the first parameter,
@@ -35,6 +37,7 @@ export const fetchTasks = createAsyncThunk(
   }
 );
 
+// POST @ /tasks
 export const addTask = createAsyncThunk(
   'task/addTask',
   async (text, thunkAPI) => {
@@ -47,6 +50,7 @@ export const addTask = createAsyncThunk(
   }
 );
 
+// DELETE @ /tasks/:id
 export const deleteTask = createAsyncThunk(
   'tasks/deleteTask',
   async (taskId, thunkAPI) => {
